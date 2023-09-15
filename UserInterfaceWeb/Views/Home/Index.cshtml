@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model MatrixResult;
+
+<div class="text-center">
+    <h1 class="display-4">Nokia HomeWork - Aman</h1>
+</div>
+<div>
+    <h4>Spiral Matrix </h4>
+    <div>
+        int[][] Case1 = {
+        new []{1,2,3,4},
+        new []{5,6,7,8},
+        new []{9,10,11,12},
+        new []{13,14,15,16},
+        }; 
+
+        output==> @Model.Result1; <br />
+        int[][] Case2 = {
+        new []{1,2,3},
+        new []{4,5,6},
+        new []{7,8,9}
+        };
+
+        output==> @Model.Result2;
+    </div>
+
+</div>
+
+<div class="dataTables_wrapper">
+    <div>
+        <h4>User Api</h4>
+    </div>
+    <table id="DataTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Url</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script>
+       var table= $("#DataTable").DataTable({
+            columns: [
+                { 'data': 'uid' },
+                { 'data': 'name' },
+                { 'data': 'url' },
+            ],
+            processing: true,
+            language: {
+                loadingRecords: '&nbsp;',
+                processing: '<div class="spinner"></div>'
+            },
+            bServerSide: true,
+            sAjaxSource: '/Home/GetUser',
+            sServerMethod: 'POST'
+        });
+    </script>
+}
